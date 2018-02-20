@@ -1,0 +1,38 @@
+{{#freestyle-guide
+  title='Ember Observer'
+  subtitle='Component Explorer'
+  }}
+
+  {{#freestyle-section name='Visual Style' as |section|}}
+
+    {{#section.subsection name='Typography'}}
+
+      {{#freestyle-usage 'typography-open-sans' title='Open Sans' hasCode=false}}
+        {{freestyle-typeface fontFamily='Open Sans'}}
+      {{/freestyle-usage}}
+
+    {{/section.subsection}}
+
+    {{#section.subsection name='Color'}}
+
+      {{#freestyle-usage 'fp' title='Color Palette' hasCode=false}}
+        {{freestyle-palette colorPalette=colorPalette title='Color Palette' description='Main colors' }}
+      {{/freestyle-usage}}
+
+      {{#freestyle-usage 'fp2' title='Gray Color Palette' hasCode=false}}
+        {{freestyle-palette colorPalette=grayColorPalette title='Gray Color Palette' description='Gray colors used for texture' }}
+      {{/freestyle-usage}}
+
+      {{#freestyle-usage 'fp3' title='Light Color Palette' hasCode=false}}
+        {{freestyle-palette colorPalette=lightColorPalette title='Light Color Palette' description='Light colors used for statuses' }}
+      {{/freestyle-usage}}
+
+      {{#freestyle-usage 'fp4' title='Font Color Palette' hasCode=false}}
+        {{freestyle-palette colorPalette=fontColorPalette title='Font Color Palette' description='Font colors' }}
+      {{/freestyle-usage}}
+
+    {{/section.subsection}}
+
+  {{/freestyle-section}}
+
+{{/freestyle-guide}}

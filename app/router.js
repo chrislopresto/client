@@ -95,6 +95,7 @@ Router.map(function() {
 
   this.route('model-not-found');
   this.route('not-found', { path: '/*path' });
+  this.route('freestyle');
 });
 
 export default Router;
