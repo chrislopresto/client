@@ -15,24 +15,101 @@
 
     {{#section.subsection name='Color'}}
 
-      {{#freestyle-usage 'fp' title='Color Palette' hasCode=false}}
+      {{#freestyle-usage 'color-pallete' title='Color Palette' hasCode=false}}
         {{freestyle-palette colorPalette=colorPalette title='Color Palette' description='Main colors' }}
       {{/freestyle-usage}}
 
-      {{#freestyle-usage 'fp2' title='Gray Color Palette' hasCode=false}}
+      {{#freestyle-usage 'color-palette-score' title='Score Color Palette' hasCode=false}}
+        {{freestyle-palette colorPalette=scoreColorPalette title='Score Color Palette' description='Score colors' }}
+      {{/freestyle-usage}}
+
+      {{#freestyle-usage 'color-palette-gray' title='Gray Color Palette' hasCode=false}}
         {{freestyle-palette colorPalette=grayColorPalette title='Gray Color Palette' description='Gray colors used for texture' }}
       {{/freestyle-usage}}
 
-      {{#freestyle-usage 'fp3' title='Light Color Palette' hasCode=false}}
+      {{#freestyle-usage 'color-palette-light' title='Light Color Palette' hasCode=false}}
         {{freestyle-palette colorPalette=lightColorPalette title='Light Color Palette' description='Light colors used for statuses' }}
       {{/freestyle-usage}}
 
-      {{#freestyle-usage 'fp4' title='Font Color Palette' hasCode=false}}
+      {{#freestyle-usage 'color-palette-font' title='Font Color Palette' hasCode=false}}
         {{freestyle-palette colorPalette=fontColorPalette title='Font Color Palette' description='Font colors' }}
       {{/freestyle-usage}}
 
     {{/section.subsection}}
 
+  {{/freestyle-section}}
+
+  {{#freestyle-section name='Components' as |section|}}
+    {{#section.subsection name='Addon'}}
+      {{#freestyle-usage 'c-addon-details' title='Addon Details'}}
+        {{addon-details addon=(hash name='ember-wormhole' score=10 isWip=true)}}
+      {{/freestyle-usage}}
+    {{/section.subsection}}
+
+    {{#section.subsection name='Addon Playground'}}
+      {{#freestyle-dynamic 'p-addon-details'
+        dynamicProperties=addonDetailsProperties
+        title='Addon Details'
+        componentName='addon-details'
+        as |dynamic|
+      }}
+        {{addon-details
+          addon=(hash
+            name=addonDetailsProperties.name.value
+            ranking=addonDetailsProperties.ranking.value
+            score=addonDetailsProperties.score.value
+            description=addonDetailsProperties.description.value
+            isDeprecated=addonDetailsProperties.isDeprecated.value
+            isOfficial=addonDetailsProperties.isOfficial.value
+            isCliDependency=addonDetailsProperties.isCliDependency.value
+            latestVersionDate=(moment addonDetailsProperties.latestVersionDate.value)
+          )
+          showRanking=dynamic.showRanking
+        }}
+      {{/freestyle-dynamic}}
+    {{/section.subsection}}
+
+    {{#section.subsection name='UI'}}
+      {{#freestyle-usage 'c-dot-spinner' title='Dot Spinner'}}
+        {{dot-spinner}}
+      {{/freestyle-usage}}
+
+      {{#freestyle-usage 'c-human-url' title='Human URL'}}
+        {{human-url url="https://en.wikipedia.org/wiki/The_Hitchhiker%27s_Guide_to_the_Galaxy"}}
+      {{/freestyle-usage}}
+
+      {{#freestyle-usage 'c-relative-time' title='Relative Time'}}
+        {{relative-time date=(moment '2018-01-01')}}
+      {{/freestyle-usage}}
+
+      {{#freestyle-collection title='Relative Time' defaultKey='month' as |collection|}}
+        {{#collection.variant key='minute'}}
+          {{#freestyle-usage 'c-relative-time-minute' title='minute'}}
+            {{relative-time date=date.minuteAgo}}
+          {{/freestyle-usage}}
+        {{/collection.variant}}
+        {{#collection.variant key='day'}}
+          {{#freestyle-usage 'c-relative-time-day' title='day'}}
+            {{relative-time date=date.dayAgo}}
+          {{/freestyle-usage}}
+        {{/collection.variant}}
+        {{#collection.variant key='week'}}
+          {{#freestyle-usage 'c-relative-time-week' title='week'}}
+            {{relative-time date=date.weekAgo}}
+          {{/freestyle-usage}}
+        {{/collection.variant}}
+        {{#collection.variant key='month'}}
+          {{#freestyle-usage 'c-relative-time-month' title='month'}}
+            {{relative-time date=date.monthAgo}}
+          {{/freestyle-usage}}
+        {{/collection.variant}}
+        {{#collection.variant key='year'}}
+          {{#freestyle-usage 'c-relative-time-year' title='year'}}
+            {{relative-time date=date.yearAgo}}
+          {{/freestyle-usage}}
+        {{/collection.variant}}
+      {{/freestyle-collection}}
+    {{/section.subsection}}
   {{/freestyle-section}}
 
 {{/freestyle-guide}}
