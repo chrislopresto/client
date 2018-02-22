@@ -7,7 +7,7 @@
 
     {{#section.subsection name='Typography'}}
 
-      {{#freestyle-usage 'typography-open-sans' title='Open Sans' hasCode=false}}
+      {{#freestyle-usage 'typography-open-sans' title='Open Sans' showCode=false}}
         {{freestyle-typeface fontFamily='Open Sans'}}
       {{/freestyle-usage}}
 
@@ -15,23 +15,23 @@
 
     {{#section.subsection name='Color'}}
 
-      {{#freestyle-usage 'color-pallete' title='Color Palette' hasCode=false}}
+      {{#freestyle-usage 'color-pallete' title='Color Palette' showCode=false}}
         {{freestyle-palette colorPalette=colorPalette title='Color Palette' description='Main colors' }}
       {{/freestyle-usage}}
 
-      {{#freestyle-usage 'color-palette-score' title='Score Color Palette' hasCode=false}}
+      {{#freestyle-usage 'color-palette-score' title='Score Color Palette' showCode=false}}
         {{freestyle-palette colorPalette=scoreColorPalette title='Score Color Palette' description='Score colors' }}
       {{/freestyle-usage}}
 
-      {{#freestyle-usage 'color-palette-gray' title='Gray Color Palette' hasCode=false}}
+      {{#freestyle-usage 'color-palette-gray' title='Gray Color Palette' showCode=false}}
         {{freestyle-palette colorPalette=grayColorPalette title='Gray Color Palette' description='Gray colors used for texture' }}
       {{/freestyle-usage}}
 
-      {{#freestyle-usage 'color-palette-light' title='Light Color Palette' hasCode=false}}
+      {{#freestyle-usage 'color-palette-light' title='Light Color Palette' showCode=false}}
         {{freestyle-palette colorPalette=lightColorPalette title='Light Color Palette' description='Light colors used for statuses' }}
       {{/freestyle-usage}}
 
-      {{#freestyle-usage 'color-palette-font' title='Font Color Palette' hasCode=false}}
+      {{#freestyle-usage 'color-palette-font' title='Font Color Palette' showCode=false}}
         {{freestyle-palette colorPalette=fontColorPalette title='Font Color Palette' description='Font colors' }}
       {{/freestyle-usage}}
 
@@ -40,10 +40,40 @@
   {{/freestyle-section}}
 
   {{#freestyle-section name='Components' as |section|}}
-    {{#section.subsection name='Addon'}}
-      {{#freestyle-usage 'c-addon-details' title='Addon Details'}}
-        {{addon-details addon=(hash name='ember-wormhole' score=10 isWip=true)}}
+    {{#section.subsection name='Addon Details'}}
+      {{#freestyle-collection title='Addon Details' defaultKey='good' as |collection|}}
+        {{#collection.variant key='good'}}
+          {{#freestyle-usage 'c-addon-details-ember-disco' title='Addon Details'}}
+            {{addon-details addon=emberDisco}}
+          {{/freestyle-usage}}
+        {{/collection.variant}}
+
+        {{#collection.variant key='low'}}
+          {{#freestyle-usage 'c-addon-details-ember-flip-flop' title='Addon Details'}}
+            {{addon-details addon=emberFlipFlop}}
+          {{/freestyle-usage}}
+        {{/collection.variant}}
+
+        {{#collection.variant key='wip'}}
+          {{#freestyle-usage 'c-addon-details-ember-rogue-wip' title='Addon Details'}}
+            {{addon-details addon=emberRogueWip}}
+          {{/freestyle-usage}}
+        {{/collection.variant}}
+      {{/freestyle-collection}}
+    {{/section.subsection}}
+
+    {{#section.subsection name='Addon List'}}
+      {{#freestyle-usage 'c-addon-list' title='Addon List'}}
+        {{addon-list addons=addons}}
       {{/freestyle-usage}}
+      {{!-- {{freestyle-usage 'c-addon-list-flip-flop--notes'}} --}}
+      <div class="FreestyleUsage">
+        <div class="FreestyleUsage-snippet">
+          {{freestyle-snippet name='c-addon-details.js' language='js'}}
+          {{freestyle-snippet name='c-addon-list-flip-flop--notes.js' language='js'}}
+          {{freestyle-snippet name='c-addon-list-rogue-wip--notes.js' language='js'}}
+        </div>
+      </div>
     {{/section.subsection}}
 
     {{#section.subsection name='Addon Playground'}}

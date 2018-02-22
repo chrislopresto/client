@@ -1,11 +1,82 @@
 import { inject as service } from '@ember/service';
-import { get } from '@ember/object'
 import { computed } from '@ember/object'
 import FreestyleController from 'ember-freestyle/controllers/freestyle';
 import moment from 'moment';
 
 export default FreestyleController.extend({
   emberFreestyle: service(),
+
+  addons: computed('emberDisco', 'emberFlipFlop', 'emberRogueWip', function()  {
+    return [
+      this.get('emberDisco'),
+      this.get('emberFlipFlop'),
+      this.get('emberRogueWip')
+    ];
+  }),
+
+
+  emberDisco: computed('date', function() {
+    return {
+      // BEGIN-FREESTYLE-USAGE c-addon-details
+      name: 'ember-disco',
+      description: 'A JavaScript dance party for the ages',
+      repositoryUrl: 'https://github.com/ember-disco/ember-disco',
+      latestVersionDate: this.get('date.weekAgo'),
+      publishedDate: this.get('date.weekAgo'),
+      license: 'MIT',
+      ranking: 17,
+      githubUsers: [
+        { name: 'johnnyalpha' },
+        { name: 'johnnybravo' }
+      ],
+      lastMonthDownloads: 17987,
+      score: 8,
+      isWip: false
+      // END-FREESTYLE-USAGE
+    }
+  }),
+
+  emberFlipFlop: computed('date', function() {
+    return {
+      // BEGIN-FREESTYLE-USAGE c-addon-list-flip-flop--notes
+      name: 'ember-flip-flop',
+      description: 'A whimsical feature flipping framework with no qualms or political affiliation',
+      repositoryUrl: 'https://github.com/ember-flip-flop/ember-flip-flop',
+      latestVersionDate: this.get('date.monthAgo'),
+      publishedDate: this.get('date.monthAgo'),
+      license: 'MIT',
+      ranking: 222,
+      githubUsers: [
+        { name: 'johnnyalpha' },
+        { name: 'johnnybravo' }
+      ],
+      lastMonthDownloads: 43,
+      score: 2,
+      isWip: false
+      // END-FREESTYLE-USAGE
+    }
+  }),
+
+  emberRogueWip: computed('date', function() {
+    return {
+      // BEGIN-FREESTYLE-USAGE c-addon-list-rogue-wip--notes
+      name: 'ember-rogue-wip',
+      description: 'A mischievous addon that toggles the WIP bit on random ember addons',
+      repositoryUrl: 'https://github.com/ember-rogue-wip/ember-rogue-wip',
+      latestVersionDate: this.get('date.yearAgo'),
+      publishedDate: this.get('date.yearAgo'),
+      license: 'MIT',
+      ranking: 3000,
+      githubUsers: [
+        { name: 'johnnyalpha' },
+        { name: 'johnnybravo' }
+      ],
+      lastMonthDownloads: 122,
+      score: null,
+      isWip: true
+      // END-FREESTYLE-USAGE
+    }
+  }),
 
   date: computed(function() {
     return {
@@ -14,7 +85,7 @@ export default FreestyleController.extend({
       weekAgo: moment(moment.now()).add(-1, 'week'),
       monthAgo: moment(moment.now()).add(-1, 'month'),
       yearAgo: moment(moment.now()).add(-1, 'year')
-    }
+    };
   }),
 
   addonDetailsProperties: computed('date', function() {
@@ -36,20 +107,20 @@ export default FreestyleController.extend({
         inputType: 'checkbox'
       },
       ranking: {
-        value: 77,
+        value: 1,
         inputType: 'number'
       },
       score: {
-        value: 8,
+        value: 10,
         inputType: 'number'
       },
       name: {
-        value: 'ember-wormhole',
+        value: 'ember-addon-coin',
         inputType: 'input'
       },
       description: {
         value:
-          'A pretty cool addon that does a lot of things... something something something... blockchain',
+          'Embed your Ember app on the blockchain and profit',
         inputType: 'textarea'
       },
       latestVersionDate: {
